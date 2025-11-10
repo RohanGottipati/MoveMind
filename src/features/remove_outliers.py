@@ -8,6 +8,9 @@ to improve data quality for machine learning models.
 import pandas as pd
 import numpy as np
 from typing import Literal
+import logging
+
+logger = logging.getLogger(__name__)
 
 def remove_outliers(df: pd.DataFrame, method: Literal['iqr', 'zscore'] = 'iqr') -> pd.DataFrame:
     """
@@ -19,7 +22,14 @@ def remove_outliers(df: pd.DataFrame, method: Literal['iqr', 'zscore'] = 'iqr') 
         
     Returns:
         DataFrame with outliers removed
+        
+    Raises:
+        ValueError: If method is not supported
     """
+    if method not in ['iqr', 'zscore']:
+        logger.error(f"Unsupported method: {method}")
+        raise ValueError(f"Method must be 'iqr' or 'zscore', got {method}")
+    logger.info(f"Removing outliers using {method} method")
     # Placeholder for outlier removal logic
     pass
 

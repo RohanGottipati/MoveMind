@@ -8,6 +8,9 @@ from MetaMotion wearable devices for barbell exercise classification.
 import pandas as pd
 import os
 from pathlib import Path
+import logging
+
+logger = logging.getLogger(__name__)
 
 def load_raw_data(data_path: str) -> pd.DataFrame:
     """
@@ -18,7 +21,13 @@ def load_raw_data(data_path: str) -> pd.DataFrame:
         
     Returns:
         DataFrame containing loaded sensor data
+        
+    Raises:
+        FileNotFoundError: If the data path does not exist
     """
+    if not os.path.exists(data_path):
+        logger.error(f"Data path not found: {data_path}")
+        raise FileNotFoundError(f"Data path not found: {data_path}")
     # Placeholder for data loading logic
     pass
 

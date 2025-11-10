@@ -4,37 +4,70 @@ This project analyzes and models sensor data from barbell exercises using machin
 
 ## Getting Started
 
+### Prerequisites
+
+- Python 3.9 or higher
+- Conda (optional, for environment management)
+- Git
+
+### Installation
+
 1. **Clone the repository:**  
-git clone <repo-url>  
-cd data-science-template-main
+   ```bash
+   git clone https://github.com/RohanGottipati/MoveMind.git
+   cd MoveMind
+   ```
+
 2. **Set up the environment:**  
-   * With conda:  
-   conda env create -f environment.yml  
-   conda activate base  # or your custom environment name  
+   * With conda (recommended):  
+     ```bash
+     conda env create -f environment.yml
+     conda activate movemind
+     ```
    * Or with pip:  
-   pip install -r requirements.txt
-3. **Install Jupyter and other tools if needed:**  
-pip install jupyter matplotlib seaborn scikit-learn
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+3. **Verify installation:**  
+   ```bash
+   python -c "import sklearn; print('Installation successful!')"
+   ```
 
 ## Data Preparation
 
-* Place your raw MetaMotion sensor CSV files in `data/raw/MetaMotion/`.
-* Run the following scripts to process and clean your data:  
- python src/data/make_dataset.py  
- python src/features/remove_outliers.py
-* Processed data will be saved in `data/interim/` and `data/processed/`.
+1. **Place your raw data:**  
+   Place your raw MetaMotion sensor CSV files in `data/raw/MetaMotion/`.
+
+2. **Process the data:**  
+   Run the following scripts to process and clean your data:  
+   ```bash
+   python src/data/make_dataset.py
+   python src/features/remove_outliers.py
+   ```
+
+3. **Output locations:**  
+   Processed data will be saved in `data/interim/` and `data/processed/`.
 
 ## Model Training & Evaluation
 
-* Train and evaluate models with:  
- python src/models/train_model.py
-* You can add or modify algorithms in `src/models/LearningAlgorithms.py`.
+1. **Train models:**  
+   ```bash
+   python src/models/train_model.py
+   ```
+
+2. **Customize algorithms:**  
+   You can add or modify algorithms in `src/models/LearningAlgorithms.py`.
 
 ## Visualization
 
-* Generate plots and figures using:  
- python src/visualization/visualize.py
-* Adjust plot settings in `src/visualization/plot_settings.py`.
+1. **Generate visualizations:**  
+   ```bash
+   python src/visualization/visualize.py
+   ```
+
+2. **Customize plots:**  
+   Adjust plot settings in `src/visualization/plot_settings.py`.
 
 ## Notebooks
 

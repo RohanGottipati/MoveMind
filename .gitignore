@@ -25,6 +25,7 @@ wheels/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+*.ipynb
 
 # Data files
 *.csv
@@ -32,12 +33,17 @@ wheels/
 *.hdf5
 *.pkl
 *.pickle
+data/raw/
+data/interim/
+data/processed/
 
 # Models
 *.pkl
 *.joblib
 *.h5
 *.pb
+models/*.pkl
+models/*.joblib
 
 # IDE
 .vscode/
@@ -50,3 +56,10 @@ wheels/
 .DS_Store
 Thumbs.db
 
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local

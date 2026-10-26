@@ -72,6 +72,8 @@ python -m src.models.train_model           # train and evaluate models
 python -m src.visualization.visualize      # generate plots
 ```
 
+Each subpackage's `__init__.py` imports its module, so `python -m` prints a harmless `RuntimeWarning: '...' found in sys.modules ...` before the status message.
+
 Raw MetaMotion CSV exports are intended to go in `data/raw/MetaMotion/`, with intermediate and processed outputs in `data/interim/` and `data/processed/`. These directories are git-ignored (as are `*.csv`, `*.pkl`, `*.h5`, `*.joblib` and `*.ipynb` files), so create them locally. No script reads or writes them yet.
 
 ## Customising

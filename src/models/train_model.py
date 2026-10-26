@@ -3,9 +3,6 @@ Train and evaluate machine learning models for exercise classification.
 """
 
 import logging
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
-import numpy as np
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

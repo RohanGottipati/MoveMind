@@ -8,8 +8,7 @@ time series plots, distribution plots, and model performance metrics.
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-import numpy as np
-from .plot_settings import PLOT_STYLE, FIGURE_SIZE, DPI
+from .plot_settings import PLOT_STYLE
 
 # Set plotting style
 plt.style.use(PLOT_STYLE)

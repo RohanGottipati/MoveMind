@@ -5,10 +5,6 @@ This module contains implementations of various ML algorithms
 for classifying barbell exercises from sensor data.
 """
 
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.svm import SVC
-import numpy as np
-from typing import Optional
 
 class ExerciseClassifier:
     """

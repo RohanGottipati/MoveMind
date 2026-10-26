@@ -7,7 +7,6 @@ from MetaMotion wearable devices for barbell exercise classification.
 
 import pandas as pd
 import os
-from pathlib import Path
 import logging
 
 logger = logging.getLogger(__name__)

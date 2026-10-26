@@ -1,83 +1,84 @@
-# MoveMind - Fitness Machine Learning Project
+# MoveMind
 
-This project analyzes and models sensor data from barbell exercises using machine learning. It provides scripts for data cleaning, feature engineering, model training, and visualization, all tailored for fitness sensor datasets.
+Machine learning project for classifying barbell exercises (bench press, squat, deadlift, etc.) from wearable MetaMotion sensor data.
 
-## Getting Started
+> **Status:** early scaffold. The package structure, function signatures and CLI entry points are in place, but the data loading, cleaning, outlier removal, training and plotting functions are still placeholders (they currently return `None`). Running the scripts only prints a status message.
 
-### Prerequisites
+## Project structure
 
-- Python 3.9 or higher
+```
+MoveMind/
+├── environment.yml              # Conda environment (Python 3.9, installs requirements.txt via pip)
+├── requirements.txt             # Pinned pip dependency ranges
+└── src/                         # Importable package (`import src`)
+    ├── data/
+    │   └── make_dataset.py      # load_raw_data(), clean_data() – raw sensor CSVs → cleaned DataFrame
+    ├── features/
+    │   └── remove_outliers.py   # remove_outliers(df, method='iqr' | 'zscore')
+    ├── models/
+    │   ├── LearningAlgorithms.py  # ExerciseClassifier (algorithm='random_forest' | 'svm'; fit/predict)
+    │   └── train_model.py         # train_model(X, y, test_size=0.2, random_state=42)
+    └── visualization/
+        ├── plot_settings.py     # Shared plot style, figure size, DPI, exercise colour palette, font sizes
+        └── visualize.py         # plot_sensor_data(), plot_confusion_matrix()
+```
+
+Each subpackage re-exports its public functions, e.g. `from src.models import ExerciseClassifier, train_model`.
+
+## Tech stack
+
+Python 3.9 · pandas · NumPy · scikit-learn · matplotlib · seaborn · Jupyter (see `requirements.txt` for version ranges).
+
+## Prerequisites
+
+- Python 3.9 (the version pinned in `environment.yml`; the `pandas<2.0` pin limits you to Python ≤ 3.11)
 - Conda (optional, for environment management)
 - Git
 
-### Installation
+## Setup
 
-1. **Clone the repository:**  
-   ```bash
-   git clone https://github.com/RohanGottipati/MoveMind.git
-   cd MoveMind
-   ```
+```bash
+git clone https://github.com/RohanGottipati/MoveMind.git
+cd MoveMind
+```
 
-2. **Set up the environment:**  
-   * With conda (recommended):  
-     ```bash
-     conda env create -f environment.yml
-     conda activate movemind
-     ```
-   * Or with pip:  
-     ```bash
-     pip install -r requirements.txt
-     ```
+With conda (recommended):
 
-3. **Verify installation:**  
-   ```bash
-   python -c "import sklearn; print('Installation successful!')"
-   ```
+```bash
+conda env create -f environment.yml
+conda activate movemind
+```
 
-## Data Preparation
+Or with pip (ideally inside a virtual environment):
 
-1. **Place your raw data:**  
-   Place your raw MetaMotion sensor CSV files in `data/raw/MetaMotion/`.
+```bash
+pip install -r requirements.txt
+```
 
-2. **Process the data:**  
-   Run the following scripts to process and clean your data:  
-   ```bash
-   python src/data/make_dataset.py
-   python src/features/remove_outliers.py
-   ```
+Verify the installation:
 
-3. **Output locations:**  
-   Processed data will be saved in `data/interim/` and `data/processed/`.
+```bash
+python -c "import sklearn; print('Installation successful!')"
+```
 
-## Model Training & Evaluation
+## Running the pipeline
 
-1. **Train models:**  
-   ```bash
-   python src/models/train_model.py
-   ```
+Run the modules from the repository root with `python -m` (the package uses relative imports, so `python src/visualization/visualize.py` fails with an `ImportError`):
 
-2. **Customize algorithms:**  
-   You can add or modify algorithms in `src/models/LearningAlgorithms.py`.
+```bash
+python -m src.data.make_dataset            # load and clean raw sensor data
+python -m src.features.remove_outliers     # remove outliers
+python -m src.models.train_model           # train and evaluate models
+python -m src.visualization.visualize      # generate plots
+```
 
-## Visualization
+Raw MetaMotion CSV exports are intended to go in `data/raw/MetaMotion/`, with intermediate and processed outputs in `data/interim/` and `data/processed/`. These directories are git-ignored (as are `*.csv`, `*.pkl`, `*.h5`, `*.joblib` and `*.ipynb` files), so create them locally. No script reads or writes them yet.
 
-1. **Generate visualizations:**  
-   ```bash
-   python src/visualization/visualize.py
-   ```
+## Customising
 
-2. **Customize plots:**  
-   Adjust plot settings in `src/visualization/plot_settings.py`.
-
-## Notebooks
-
-* Use the `notebooks/` directory for interactive exploration and prototyping with Jupyter.
+- Algorithms: `src/models/LearningAlgorithms.py`
+- Plot style, colours and sizes: `src/visualization/plot_settings.py`
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request.
-
-## About
-
- Machine learning system that classifies barbell exercises (bench press, squat, deadlift, etc.) with 89.5% accuracy using wearable sensor data.
-
+Contributions are welcome. Fork the repository and open a pull request.
